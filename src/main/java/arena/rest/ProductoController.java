@@ -3,12 +3,10 @@ package arena.rest;
 import arena.entity.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import arena.serivces.api.ProductoService;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +33,30 @@ public class ProductoController
             RESPONSE.put("Mensaje",listado);
             return new ResponseEntity(RESPONSE, HttpStatus.OK);
         }
-        RESPONSE.put("Mensajes","No hay productos");
+        RESPONSE.put("Mensaje","No hay productos");
         return new ResponseEntity(RESPONSE, HttpStatus.OK);
+    }
+
+    @PostMapping("all")
+    public ResponseEntity<HashMap<String, Object>> create(@RequestBody Producto pProducto)
+    {
+        RESPONSE.clear();
+        try
+        {
+            System.out.println(pProducto);
+            final Producto producto = serivce.save(pProducto);
+            if (producto == null) {
+                RESPONSE.put("Mensaje", "No se pudo agregar el producto");
+                return new ResponseEntity(RESPONSE, HttpStatus.NOT_FOUND);
+            }
+            RESPONSE.put("Mensaje", producto );
+            return new ResponseEntity(RESPONSE, HttpStatus.OK);
+        }
+        catch (DataAccessException e)
+        {
+            RESPONSE.put("Mensaje", "No se ha logrado realizar la consulta en la base de datos");
+            RESPONSE.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity(RESPONSE, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
