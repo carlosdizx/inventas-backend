@@ -22,8 +22,8 @@ public class ProductoController
     @Autowired
     private ProductoService serivce;
 
-    @GetMapping("allData")
-    public List<Producto> getAllData()
+    @GetMapping("all")
+    public List<Producto> getAll()
     {
         return serivce.getAll();
     }
