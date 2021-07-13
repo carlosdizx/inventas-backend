@@ -3,6 +3,8 @@ package arena.rest;
 import arena.entity.Producto;
 import org.springframework.beans.factory.annotation.Autowired;
 import arena.serivces.api.ProductoService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,8 +25,16 @@ public class ProductoController
     private ProductoService serivce;
 
     @GetMapping("all")
-    public List<Producto> getAll()
+    public ResponseEntity<HashMap<String, Object>> getAll()
     {
-        return serivce.getAll();
+        RESPONSE.clear();
+        final List<Producto> listado = serivce.getAll();
+        if ( !listado.isEmpty() )
+        {
+            RESPONSE.put("Mensaje",listado);
+            return new ResponseEntity(RESPONSE, HttpStatus.OK);
+        }
+        RESPONSE.put("Mensajes","No hay productos");
+        return new ResponseEntity(RESPONSE, HttpStatus.OK);
     }
 }
