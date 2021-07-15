@@ -39,17 +39,7 @@ POST http://localhost:8090/api/facturas/all
 Content-Type: application/json
 
 {
-  "cliente": {
-    "id": 1,
-    "nombres": "Carlos Ernesto",
-    "documento": 1082749257,
-    "direccion": "Mz G casa 5, Los héroes",
-    "ciudad": "Consacá",
-    "departamento": "Nariño",
-    "codigoPostal": "522540",
-    "celular": "3163930876",
-    "correo": "carlodiaz@umariana.edu.co"
-  },
+  "cliente": null,
   "items": [
     {
       "id": 1,

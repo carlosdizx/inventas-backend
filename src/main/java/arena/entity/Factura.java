@@ -1,5 +1,6 @@
 package arena.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -23,10 +24,12 @@ public class Factura implements Serializable
     private Date fecha;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Cliente cliente;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "factura_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<ItemFactura> items;
 
     private String descripcion;
