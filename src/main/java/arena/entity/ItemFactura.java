@@ -15,11 +15,11 @@ public class ItemFactura implements Serializable
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
-    private int cantidad;
+    private Integer cantidad;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "producto_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Producto producto;
 
     public Integer getId()
@@ -51,4 +51,9 @@ public class ItemFactura implements Serializable
     {
         this.producto = producto;
     }
+
+    public Double subTotal() {
+        return this.cantidad.doubleValue() * producto.getPrecioVenta();
+    }
+
 }

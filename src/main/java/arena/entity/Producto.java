@@ -26,19 +26,12 @@ public class Producto implements Serializable
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
 
-    public Producto() {
-    }
-
-    public Producto(Integer id, String nombre, double precioCompra, double precioVenta) {
-        this.id = id;
-        this.nombre = nombre;
-        this.precioCompra = precioCompra;
-        this.precioVenta = precioVenta;
-    }
-
     @PrePersist
     public void prePersist() {
         this.fecha = new Date();
+    }
+
+    public Producto() {
     }
 
     public Integer getId() {

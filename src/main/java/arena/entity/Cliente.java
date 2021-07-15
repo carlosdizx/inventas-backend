@@ -7,6 +7,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="clientes")
@@ -19,9 +21,11 @@ public class Cliente implements Serializable
     private Integer id;
 
     @Column(nullable = false)
+    @NotEmpty
     private String nombres;
 
     @Column(unique = true,nullable = false)
+    @NotEmpty
     private Long documento;
 
     private String direccion;
