@@ -1,10 +1,11 @@
 package arena.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "productos")
-public class Producto
+public class Producto implements Serializable
 {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
