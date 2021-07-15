@@ -1,19 +1,25 @@
 package arena.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="clientes")
 public class Cliente implements Serializable
 {
+
+    //------------------------------ ATRIBUTOS ------------------------------
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -42,27 +48,24 @@ public class Cliente implements Serializable
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull
+    @CreationTimestamp
     private Date fecha;
 
+
+    //@OneToMany(cascade = {CascadeType.ALL},fetch= FetchType.LAZY, mappedBy = "cliente")
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cliente_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<Factura> facturas;
 
+    //------------------------------ CONSTRUCTORES ------------------------------
+
     public Cliente() {
+        facturas = new ArrayList<>();
     }
 
-    public Cliente(Integer id, String nombres, Long documento, String direccion, String ciudad, String departamento, String codigoPostal, String celular, String correo) {
-        this.id = id;
-        this.nombres = nombres;
-        this.documento = documento;
-        this.direccion = direccion;
-        this.ciudad = ciudad;
-        this.departamento = departamento;
-        this.codigoPostal = codigoPostal;
-        this.celular = celular;
-        this.correo = correo;
-    }
+    //------------------------------ METODOS ------------------------------
 
     public Integer getId() {
         return id;
@@ -134,5 +137,21 @@ public class Cliente implements Serializable
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public List<Factura> getFacturas() {
+        return facturas;
+    }
+
+    public void setFacturas(List<Factura> facturas) {
+        this.facturas = facturas;
     }
 }

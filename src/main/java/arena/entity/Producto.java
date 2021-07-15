@@ -1,5 +1,6 @@
 package arena.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.util.Date;
 @Table(name = "productos")
 public class Producto implements Serializable
 {
+    //------------------------------ ATRIBUTOS ------------------------------
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -24,15 +26,16 @@ public class Producto implements Serializable
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @CreationTimestamp
     private Date fecha;
 
-    @PrePersist
-    public void prePersist() {
-        this.fecha = new Date();
-    }
+    //------------------------------ CONSTRUCTORES ------------------------------
 
     public Producto() {
     }
+
+    //------------------------------ METODOS ------------------------------
+
 
     public Integer getId() {
         return id;

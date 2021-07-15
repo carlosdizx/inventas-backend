@@ -1,6 +1,7 @@
 package arena.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -13,42 +14,39 @@ import java.util.List;
 @Table(name = "facturas")
 public class Factura implements Serializable
 {
+
+    //------------------------------ ATRIBUTOS ------------------------------
+
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
+    private String descripcion;
+
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @CreationTimestamp
     private Date fecha;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Cliente cliente;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "factura_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<ItemFactura> items;
 
-    private String descripcion;
-
-    @PrePersist
-    public void prePersist() {
-        this.fecha = new Date();
-    }
+    //------------------------------ CONSTRUCTORES ------------------------------
 
     public Factura() {
-        this.items = new ArrayList<ItemFactura>();
+
     }
 
-    public Factura(Long id, String descripcion, String observacion, Date fecha, Cliente cliente) {
-        super();
-        this.descripcion = descripcion;
-        this.fecha = fecha;
-        this.cliente = cliente;
-    }
+    //------------------------------ METODOS ------------------------------
 
     public Integer getId() {
         return id;
@@ -56,6 +54,14 @@ public class Factura implements Serializable
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Date getFecha() {
@@ -80,24 +86,5 @@ public class Factura implements Serializable
 
     public void setItems(List<ItemFactura> items) {
         this.items = items;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    @Override
-    public String toString() {
-        return "Factura{" +
-                "id=" + id +
-                ", fecha=" + fecha +
-                ", cliente=" + cliente +
-                ", items=" + items +
-                ", descripcion='" + descripcion + '\'' +
-                '}';
     }
 }

@@ -9,6 +9,8 @@ import java.io.Serializable;
 @Table(name = "facturas_items")
 public class ItemFactura implements Serializable
 {
+    //------------------------------ ATRIBUTOS ------------------------------
+
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -19,37 +21,51 @@ public class ItemFactura implements Serializable
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "producto_id")
-    //@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Producto producto;
 
-    public Integer getId()
-    {
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "factura_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Factura factura;
+
+    //------------------------------ CONSTRUCTORES ------------------------------
+
+    public ItemFactura() {
+    }
+
+    //------------------------------ METODOS ------------------------------
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id)
-    {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public int getCantidad()
-    {
+    public Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad)
-    {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 
-    public Producto getProducto()
-    {
+    public Producto getProducto() {
         return producto;
     }
 
-    public void setProducto(Producto producto)
-    {
+    public void setProducto(Producto producto) {
         this.producto = producto;
+    }
+
+    public Factura getFactura() {
+        return factura;
+    }
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
     }
 
     public Double subTotal() {
