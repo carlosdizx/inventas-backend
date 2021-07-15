@@ -2,6 +2,7 @@ package arena.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "productos")
@@ -17,6 +18,9 @@ public class Producto implements Serializable
 
     private double precioVenta;
 
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
+
     public Producto() {
     }
 
@@ -25,6 +29,11 @@ public class Producto implements Serializable
         this.nombre = nombre;
         this.precioCompra = precioCompra;
         this.precioVenta = precioVenta;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        this.fecha = new Date();
     }
 
     public Integer getId() {
@@ -57,5 +66,13 @@ public class Producto implements Serializable
 
     public void setPrecioVenta(double precioVenta) {
         this.precioVenta = precioVenta;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 }
