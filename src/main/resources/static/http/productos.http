@@ -1,3 +1,8 @@
+DELETE http://localhost:8090/api/productos/get/3
+Accept: application/json
+
+###
+
 PUT http://localhost:8090/api/productos/get/2
 Content-Type: application/json
 
@@ -9,7 +14,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:8090/api/productos/get/1
+GET http://localhost:8090/api/productos/get/2
 Accept: application/json
 
 ###

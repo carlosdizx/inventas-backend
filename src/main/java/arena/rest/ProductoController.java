@@ -106,4 +106,27 @@ public class ProductoController
             return new ResponseEntity(RESPONSE, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @DeleteMapping("get/{id}")
+    public ResponseEntity<HashMap<String, Object>> delete(@PathVariable Integer id)
+    {
+        RESPONSE.clear();
+        try
+        {
+            Producto producto = serivce.get(id);
+            if (producto == null) {
+                RESPONSE.put("Mensaje", "No se encontró el producto, no se pudo eliminar");
+                return new ResponseEntity(RESPONSE, HttpStatus.NOT_FOUND);
+            }
+            serivce.delete(id);
+            RESPONSE.put("Mensaje", "Producto eliminado!" );
+            return new ResponseEntity(RESPONSE, HttpStatus.OK);
+        }
+        catch (DataAccessException e)
+        {
+            RESPONSE.put("Mensaje", "No se ha logrado realizar la consulta en la base de datos");
+            RESPONSE.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity(RESPONSE, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
