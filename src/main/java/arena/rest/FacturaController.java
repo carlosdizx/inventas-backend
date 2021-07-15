@@ -95,7 +95,7 @@ public class FacturaController
             }
             factura.setCliente(pFactura.getCliente());
             factura.setDescripcion(pFactura.getDescripcion());
-            factura.setItems(pFactura.getItems());
+            //factura.setItems(pFactura.getItems());
             serivce.save(factura);
             RESPONSE.put("Mensaje", factura );
             return new ResponseEntity(RESPONSE, HttpStatus.OK);

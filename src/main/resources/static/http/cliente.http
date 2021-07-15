@@ -9,12 +9,7 @@ Content-Type: application/json
 {
   "nombres": "Carlos Ernesto",
   "documento": 1082749257,
-  "direccion": "Mz G casa 5, Los héroes",
-  "ciudad": "Consacá",
-  "departamento":"Nariño",
-  "codigoPostal": "522540",
   "celular": "3163930876",
-  "correo": "carlodiaz@umariana.edu.co"
 }
 
 ###

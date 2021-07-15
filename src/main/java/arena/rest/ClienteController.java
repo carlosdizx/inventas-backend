@@ -93,12 +93,7 @@ public class ClienteController
             }
             cliente.setNombres( pCliente.getNombres() );
             cliente.setDocumento( pCliente.getDocumento() );
-            cliente.setDireccion( pCliente.getDireccion() );
-            cliente.setCiudad( pCliente.getCiudad() );
-            cliente.setDepartamento( pCliente.getDepartamento() );
-            cliente.setCodigoPostal(pCliente.getCodigoPostal());
             cliente.setCelular(pCliente.getCelular());
-            cliente.setCorreo(pCliente.getCorreo());
             serivce.save(cliente);
             RESPONSE.put("Mensaje", cliente );
             return new ResponseEntity(RESPONSE, HttpStatus.OK);

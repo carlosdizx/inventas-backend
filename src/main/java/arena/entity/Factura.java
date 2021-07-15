@@ -32,7 +32,7 @@ public class Factura implements Serializable
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cliente_id")
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnoreProperties(value={"facturas", "hibernateLazyInitializer", "handler"}, allowSetters=true)
     private Cliente cliente;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -43,7 +43,7 @@ public class Factura implements Serializable
     //------------------------------ CONSTRUCTORES ------------------------------
 
     public Factura() {
-
+        items = new ArrayList<>();
     }
 
     //------------------------------ METODOS ------------------------------
