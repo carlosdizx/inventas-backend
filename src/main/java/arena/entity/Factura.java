@@ -1,7 +1,10 @@
 package arena.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,11 +12,14 @@ import java.util.List;
 @Table(name = "facturas")
 public class Factura implements Serializable
 {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,12 +31,20 @@ public class Factura implements Serializable
 
     private String descripcion;
 
-    public Factura() {
-    }
-
     @PrePersist
     public void prePersist() {
         this.fecha = new Date();
+    }
+
+    public Factura() {
+        this.items = new ArrayList<ItemFactura>();
+    }
+
+    public Factura(Long id, String descripcion, String observacion, Date fecha, Cliente cliente) {
+        super();
+        this.descripcion = descripcion;
+        this.fecha = fecha;
+        this.cliente = cliente;
     }
 
     public Integer getId() {
@@ -71,5 +85,16 @@ public class Factura implements Serializable
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "Factura{" +
+                "id=" + id +
+                ", fecha=" + fecha +
+                ", cliente=" + cliente +
+                ", items=" + items +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
     }
 }

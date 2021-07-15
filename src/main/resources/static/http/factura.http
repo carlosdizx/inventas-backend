@@ -1,0 +1,59 @@
+DELETE http://localhost:8090/api/productos/get/3
+Accept: application/json
+
+###producto.http
+
+PUT http://localhost:8090/api/productos/get/2
+Content-Type: application/json
+
+{
+  "nombre": "Salchipapa Mixta",
+  "precioCompra": 6000.0,
+  "precioVenta": 7000.0
+}
+
+###
+
+GET http://localhost:8090/api/productos/get/2
+Accept: application/json
+
+###
+POST http://localhost:8090/api/facturas/all
+Content-Type: application/json
+
+{
+  "cliente": {
+    "id": 1,
+    "nombres": "Carlos Ernesto",
+    "documento": 1082749257,
+    "direccion": "Mz G casa 5, Los héroes",
+    "ciudad": "Consacá",
+    "departamento": "Nariño",
+    "codigoPostal": "522540",
+    "celular": "3163930876",
+    "correo": "carlodiaz@umariana.edu.co"
+  },
+  "items": [
+    {
+      "id": 1,
+      "nombre": "Salchipapa BBQ",
+      "precioCompra": 5000.0,
+      "precioVenta": 6000.0,
+      "fecha": "2021-07-15"
+    },
+    {
+      "id": 2,
+      "nombre": "Salchipapa Mixta",
+      "precioCompra": 6000.0,
+      "precioVenta": 7000.0,
+      "fecha": "2021-07-15"
+    }
+  ],
+  "descripcion": "1082749257"
+}
+
+###
+GET http://localhost:8090/api/facturas/all
+Accept: application/json
+
+###

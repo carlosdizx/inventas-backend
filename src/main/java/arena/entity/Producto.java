@@ -1,5 +1,7 @@
 package arena.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -8,6 +10,8 @@ import java.util.Date;
 @Table(name = "productos")
 public class Producto implements Serializable
 {
+
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
@@ -19,6 +23,7 @@ public class Producto implements Serializable
     private double precioVenta;
 
     @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date fecha;
 
     public Producto() {

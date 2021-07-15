@@ -1,9 +1,7 @@
 package arena.rest;
 
 import arena.entity.Factura;
-import arena.entity.Producto;
 import arena.serivces.api.FacturaService;
-import arena.serivces.api.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -45,6 +43,7 @@ public class FacturaController
         RESPONSE.clear();
         try
         {
+            System.out.println(pFactura);
             final Factura factura = serivce.save(pFactura);
             if (factura == null) {
                 RESPONSE.put("Mensaje", "No se pudo agregar la factura");
