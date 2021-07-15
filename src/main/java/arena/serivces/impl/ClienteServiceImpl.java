@@ -2,7 +2,6 @@ package arena.serivces.impl;
 
 import arena.commons.GenericServiceImpl;
 import arena.dao.ClienteDao;
-import arena.dao.ProductoDao;
 import arena.entity.Cliente;
 import arena.serivces.api.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
