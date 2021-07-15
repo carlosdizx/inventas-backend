@@ -10,9 +10,10 @@ public class Cliente
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(nullable = false)
     private String nombres;
 
-    @Column(unique = true)
+    @Column(unique = true,nullable = false)
     private Long documento;
 
     private String direccion;
