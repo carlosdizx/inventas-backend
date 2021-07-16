@@ -29,7 +29,7 @@ public class UsuarioService implements UserDetailsService
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String nombreUsuario) throws UsernameNotFoundException
     {
-        final Usuario usuario = dao.findByNombre(nombreUsuario);
+        final Usuario usuario = dao.findByUsername(nombreUsuario);
         if (usuario==null){
             LOGGER.error("El usuario no existe el usuario '"+nombreUsuario+"'");
             throw new UsernameNotFoundException("El usuario no existe el usuario '"+nombreUsuario+"'");
@@ -39,6 +39,6 @@ public class UsuarioService implements UserDetailsService
                 .map(rol -> new SimpleGrantedAuthority(rol.getNombre()))
                 .peek(authority -> LOGGER.info("Rol: "+authority.getAuthority()))
                 .collect(Collectors.toList());
-        return new User(usuario.getNombre(),usuario.getClave(),usuario.isHabilitado(),true,true,true,authorities);
+        return new User(usuario.getUsername(),usuario.getPassword(),usuario.isHabilitado(),true,true,true,authorities);
     }
 }

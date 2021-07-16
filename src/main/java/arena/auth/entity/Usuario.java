@@ -17,10 +17,10 @@ public class Usuario implements Serializable
     private Integer id;
 
     @Column(unique = true)
-    private String nombre;
+    private String username;
 
     @Column(length =60)
-    private String clave;
+    private String password;
 
     private boolean habilitado;
 
@@ -38,20 +38,20 @@ public class Usuario implements Serializable
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getClave() {
-        return clave;
+    public String getPassword() {
+        return password;
     }
 
-    public void setClave(String clave) {
-        this.clave = clave;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public boolean isHabilitado() {
