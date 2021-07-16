@@ -1,6 +1,5 @@
 package arena.auth;
 
-import arena.auth.serivces.InfoAdicionalToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;

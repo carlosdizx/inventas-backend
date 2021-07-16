@@ -1,4 +1,4 @@
-package arena.auth.serivces;
+package arena.auth;
 
 import arena.auth.entity.Usuario;
 import arena.auth.serivces.api.UsuarioService;

@@ -1,4 +1,4 @@
-package arena.auth.serivces;
+package arena.auth.serivces.impl;
 
 import arena.auth.dao.UsuarioDao;
 import arena.auth.entity.Usuario;
@@ -18,12 +18,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service("UsuarioService")
-public class UsuarioService implements UserDetailsService, arena.auth.serivces.api.UsuarioService
+public class UsuarioServiceImpl implements UserDetailsService, arena.auth.serivces.api.UsuarioService
 {
     @Autowired
     private UsuarioDao dao;
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(UsuarioService.class);
+    private final static Logger LOGGER = LoggerFactory.getLogger(UsuarioServiceImpl.class);
 
     @Override
     @Transactional(readOnly = true)
