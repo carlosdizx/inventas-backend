@@ -10,3 +10,10 @@ INSERT INTO roleados (usuario_id, rol_id) VALUES (2,2);
 
 INSERT INTO clientes (celular, documento, fecha, nombres) VALUES('3163930876',1082749257,'1998-01-13','Carlos Díaz');
 INSERT INTO clientes (celular, documento, fecha, nombres) VALUES('3165772023',27156864,'1974-09-26','Jackeline Basante');
+
+INSERT INTO productos (fecha, nombre, precio_compra, precio_venta) VALUES (now(),'Salchipapa BBQ',6000,8000);
+INSERT INTO productos (fecha, nombre, precio_compra, precio_venta) VALUES (now(),'Salchipapa Mixta',6500,9000);
+INSERT INTO productos (fecha, nombre, precio_compra, precio_venta) VALUES (now(),'Perro caliente sencillo',4000,5500);
+INSERT INTO productos (fecha, nombre, precio_compra, precio_venta) VALUES (now(),'Gasesosa cigarra 500ml',1200,1800);
+INSERT INTO productos (fecha, nombre, precio_compra, precio_venta) VALUES (now(),'Jugo Hit 450ml',1500,2200);
+
