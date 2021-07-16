@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service("UsuarioService")
-public class UsuarioService implements UserDetailsService
+public class UsuarioService implements UserDetailsService, arena.auth.serivces.api.UsuarioService
 {
     @Autowired
     private UsuarioDao dao;
@@ -40,5 +40,11 @@ public class UsuarioService implements UserDetailsService
                 .peek(authority -> LOGGER.info("Rol: "+authority.getAuthority()))
                 .collect(Collectors.toList());
         return new User(usuario.getUsername(),usuario.getPassword(),usuario.isHabilitado(),true,true,true,authorities);
+    }
+
+    @Override
+    public Usuario findByUsername(String nombre)
+    {
+        return dao.findByUsername(nombre);
     }
 }
