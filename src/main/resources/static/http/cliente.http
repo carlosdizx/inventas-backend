@@ -9,7 +9,7 @@ Content-Type: application/json
 {
   "nombres": "Carlos Ernesto",
   "documento": 1082749257,
-  "celular": "3163930876",
+  "celular": "3163930876"
 }
 
 ###

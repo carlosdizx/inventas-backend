@@ -80,6 +80,28 @@ public class ClienteController
         }
     }
 
+    @GetMapping("get/cliente/{documento}")
+    public ResponseEntity<HashMap<String, Object>> findByID(@PathVariable Long documento)
+    {
+        RESPONSE.clear();
+        try
+        {
+            final Cliente cliente = serivce.findByDocumento(documento);
+            if (cliente == null) {
+                RESPONSE.put("Mensaje", "No se encontró el cliente");
+                return new ResponseEntity(RESPONSE, HttpStatus.NOT_FOUND);
+            }
+            RESPONSE.put("Mensaje", cliente );
+            return new ResponseEntity(RESPONSE, HttpStatus.OK);
+        }
+        catch (DataAccessException e)
+        {
+            RESPONSE.put("Mensaje", "No se ha logrado realizar la consulta en la base de datos");
+            RESPONSE.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity(RESPONSE, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PutMapping("get/{id}")
     public ResponseEntity<HashMap<String, Object>> update(@PathVariable Integer id,@RequestBody Cliente pCliente)
     {
