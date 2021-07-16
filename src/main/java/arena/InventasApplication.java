@@ -22,9 +22,6 @@ public class InventasApplication implements CommandLineRunner
     @Override
     public void run(String... args) throws Exception
     {
-        for (int i = 0 ; i < 4 ; i++)
-        {
-            System.out.println(passwordEncoder.encode("Carlosdiz98*"));
-        }
+
     }
 }
