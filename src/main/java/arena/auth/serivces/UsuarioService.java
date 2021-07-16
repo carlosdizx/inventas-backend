@@ -1,4 +1,4 @@
-package arena.serivces.impl;
+package arena.auth.serivces;
 
 import arena.auth.dao.UsuarioDao;
 import arena.auth.entity.Usuario;
