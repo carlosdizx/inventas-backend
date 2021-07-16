@@ -24,6 +24,13 @@ public class Usuario implements Serializable
 
     private boolean habilitado;
 
+    private String nombres;
+
+    private String apellidos;
+
+    @Column(unique = true)
+    private Long celular;
+
     @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinTable(name="roleados",joinColumns = @JoinColumn(name="usuario_id"),
     inverseJoinColumns =@JoinColumn(name="rol_id"),
@@ -68,5 +75,29 @@ public class Usuario implements Serializable
 
     public void setRoles(List<Rol> roles) {
         this.roles = roles;
+    }
+
+    public String getNombres() {
+        return nombres;
+    }
+
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
+    }
+
+    public String getApellidos() {
+        return apellidos;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public Long getCelular() {
+        return celular;
+    }
+
+    public void setCelular(Long celular) {
+        this.celular = celular;
     }
 }

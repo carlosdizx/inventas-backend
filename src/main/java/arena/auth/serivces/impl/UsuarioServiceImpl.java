@@ -43,6 +43,7 @@ public class UsuarioServiceImpl implements UserDetailsService, arena.auth.serivc
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Usuario findByUsername(String nombre)
     {
         return dao.findByUsername(nombre);
