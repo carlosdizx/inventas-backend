@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -23,6 +24,7 @@ public class FacturaController
     @Autowired
     private FacturaService serivce;
 
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     @GetMapping("all")
     public ResponseEntity<HashMap<String, Object>> getAll()
     {
@@ -37,6 +39,7 @@ public class FacturaController
         return new ResponseEntity(RESPONSE, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     @PostMapping("all")
     public ResponseEntity<HashMap<String, Object>> create(@RequestBody Factura pFactura)
     {
@@ -60,6 +63,7 @@ public class FacturaController
         }
     }
 
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     @GetMapping("get/{id}")
     public ResponseEntity<HashMap<String, Object>> findByID(@PathVariable Integer id)
     {
@@ -82,6 +86,7 @@ public class FacturaController
         }
     }
 
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     @PutMapping("get/{id}")
     public ResponseEntity<HashMap<String, Object>> update(@PathVariable Integer id,@RequestBody Factura pFactura)
     {
@@ -108,6 +113,7 @@ public class FacturaController
         }
     }
 
+    @Secured("ROLE_ADMIN")
     @DeleteMapping("get/{id}")
     public ResponseEntity<HashMap<String, Object>> delete(@PathVariable Integer id)
     {
@@ -132,6 +138,7 @@ public class FacturaController
     }
 
     @GetMapping("get/cliente/{documento}")
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     public ResponseEntity<HashMap<String, Object>>findAllByCliente(@PathVariable Long documento)
     {
         RESPONSE.clear();

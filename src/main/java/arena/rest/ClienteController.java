@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -22,6 +23,7 @@ public class ClienteController
     @Autowired
     private ClienteService serivce;
 
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     @GetMapping("all")
     public ResponseEntity<HashMap<String, Object>> getAll()
     {
@@ -37,6 +39,7 @@ public class ClienteController
     }
 
     @PostMapping("all")
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     public ResponseEntity<HashMap<String, Object>> create(@RequestBody Cliente pCliente)
     {
         RESPONSE.clear();
@@ -59,6 +62,7 @@ public class ClienteController
     }
 
     @GetMapping("get/{id}")
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     public ResponseEntity<HashMap<String, Object>> findByID(@PathVariable Integer id)
     {
         RESPONSE.clear();
@@ -81,6 +85,7 @@ public class ClienteController
     }
 
     @GetMapping("get/cliente/{documento}")
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     public ResponseEntity<HashMap<String, Object>> findByID(@PathVariable Long documento)
     {
         RESPONSE.clear();
@@ -103,6 +108,7 @@ public class ClienteController
     }
 
     @PutMapping("get/{id}")
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     public ResponseEntity<HashMap<String, Object>> update(@PathVariable Integer id,@RequestBody Cliente pCliente)
     {
         RESPONSE.clear();
@@ -129,6 +135,7 @@ public class ClienteController
     }
 
     @DeleteMapping("get/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<HashMap<String, Object>> delete(@PathVariable Integer id)
     {
         RESPONSE.clear();

@@ -6,6 +6,7 @@ import arena.serivces.api.ProductoService;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -23,6 +24,7 @@ public class ProductoController
     @Autowired
     private ProductoService serivce;
 
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     @GetMapping("all")
     public ResponseEntity<HashMap<String, Object>> getAll()
     {
@@ -37,6 +39,7 @@ public class ProductoController
         return new ResponseEntity(RESPONSE, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     @PostMapping("all")
     public ResponseEntity<HashMap<String, Object>> create(@RequestBody Producto pProducto)
     {
@@ -59,6 +62,7 @@ public class ProductoController
         }
     }
 
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     @GetMapping("get/{id}")
     public ResponseEntity<HashMap<String, Object>> findByID(@PathVariable Integer id)
     {
@@ -81,6 +85,7 @@ public class ProductoController
         }
     }
 
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
     @PutMapping("get/{id}")
     public ResponseEntity<HashMap<String, Object>> update(@PathVariable Integer id,@RequestBody Producto pProducto)
     {
@@ -107,6 +112,7 @@ public class ProductoController
         }
     }
 
+    @Secured({"ROLE_ADMIN"})
     @DeleteMapping("get/{id}")
     public ResponseEntity<HashMap<String, Object>> delete(@PathVariable Integer id)
     {
