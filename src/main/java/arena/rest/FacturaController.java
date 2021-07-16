@@ -130,4 +130,26 @@ public class FacturaController
             return new ResponseEntity(RESPONSE, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @GetMapping("get/cliente/{documento}")
+    public ResponseEntity<HashMap<String, Object>>findAllByCliente(@PathVariable Long documento)
+    {
+        RESPONSE.clear();
+        try
+        {
+            final List<Factura> facturas = serivce.findAllByCliente(documento);
+            if (facturas.isEmpty()) {
+                RESPONSE.put("Mensaje", "No se encontró la facturas, del cliente: "+documento);
+                return new ResponseEntity(RESPONSE, HttpStatus.NOT_FOUND);
+            }
+            RESPONSE.put("Mensaje", facturas );
+            return new ResponseEntity(RESPONSE, HttpStatus.OK);
+        }
+        catch (DataAccessException e)
+        {
+            RESPONSE.put("Mensaje", "No se ha logrado realizar la consulta en la base de datos");
+            RESPONSE.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity(RESPONSE, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

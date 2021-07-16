@@ -1,0 +1,133 @@
+POST http://localhost:8090/api/clientes/all
+Content-Type: application/json
+
+{
+  "nombres": "Carlos Ernesto",
+  "documento": 1082749257,
+  "celular": "3163930876"
+}
+
+###
+
+POST http://localhost:8090/api/clientes/all
+Content-Type: application/json
+
+{
+  "nombres": "Jackeline Aracely",
+  "documento": 27156864,
+  "celular": "3165772023"
+}
+
+###
+
+POST http://localhost:8090/api/productos/all
+Content-Type: application/json
+
+{
+  "nombre": "Pizza Hawaiian",
+  "precioCompra": 5000.0,
+  "precioVenta": 6500.0
+}
+
+###
+
+POST http://localhost:8090/api/productos/all
+Content-Type: application/json
+
+{
+  "nombre": "Salchipapa BBQ",
+  "precioCompra": 5000.0,
+  "precioVenta": 6000.0
+}
+
+###
+
+POST http://localhost:8090/api/productos/all
+Content-Type: application/json
+
+{
+  "nombre": "Gaseosa Cigarra 500ml",
+  "precioCompra": 1400.0,
+  "precioVenta": 1800.0
+}
+
+###
+
+### -------------------- Factura para 1082749257 --------------------
+POST http://localhost:8090/api/facturas/all
+Content-Type: application/json
+
+{
+  "cliente": {
+    "id": 1,
+    "nombres": "Carlos Ernesto",
+    "documento": 1082749257,
+    "celular": "3163930876"
+  },
+  "items": [
+    {
+    "cantidad":5,
+    "producto":{
+      "id": 1,
+      "nombre": "Pizza Hawaiian",
+      "precioCompra": 5000.0,
+      "precioVenta": 6500.0
+    }
+    },
+    {
+      "cantidad":3,
+      "producto":{
+        "id": 2,
+      "nombre": "Salchipapa BBQ",
+      "precioCompra": 5000.0,
+      "precioVenta": 6000.0
+    }
+    },
+    {
+      "cantidad":8,
+      "producto":{
+        "id": 3,
+        "nombre": "Gaseosa Cigarra 500ml",
+        "precioCompra": 1400.0,
+        "precioVenta": 1800.0
+      }
+    }
+  ],
+  "descripcion": "1082749257"
+}
+###
+
+### -------------------- Factura para 27156864 --------------------
+POST http://localhost:8090/api/facturas/all
+Content-Type: application/json
+
+{
+  "cliente": {
+    "id": 2,
+    "nombres": "Jackeline Aracely",
+    "documento": 27156864,
+    "celular": "3165772023"
+  },
+  "items": [
+    {
+      "cantidad":3,
+      "producto":{
+        "id": 2,
+        "nombre": "Salchipapa BBQ",
+        "precioCompra": 5000.0,
+        "precioVenta": 6000.0
+      }
+    },
+    {
+      "cantidad":8,
+      "producto":{
+        "id": 3,
+        "nombre": "Gaseosa Cigarra 500ml",
+        "precioCompra": 1400.0,
+        "precioVenta": 1800.0
+      }
+    }
+  ],
+  "descripcion": "27156864"
+}
+###

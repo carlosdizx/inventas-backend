@@ -7,6 +7,9 @@ import arena.serivces.api.FacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class FacturaServiceImpl extends GenericServiceImpl<Factura, Integer> implements FacturaService
@@ -18,5 +21,12 @@ public class FacturaServiceImpl extends GenericServiceImpl<Factura, Integer> imp
     public CrudRepository<Factura, Integer> getDao()
     {
         return dao;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Factura> findAllByCliente(Long pDopcumento)
+    {
+        return dao.findAllByCliente(pDopcumento);
     }
 }
