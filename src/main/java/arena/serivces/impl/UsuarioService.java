@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+@Service("UsuarioService")
 public class UsuarioService implements UserDetailsService
 {
     @Autowired
