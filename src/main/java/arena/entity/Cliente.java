@@ -42,16 +42,20 @@ public class Cliente implements Serializable
     private Date fecha;
 
 
+    /**
     //@OneToMany(cascade = {CascadeType.ALL},fetch= FetchType.LAZY, mappedBy = "cliente")
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "cliente_id")
     @JsonIgnoreProperties(value={"cliente", "hibernateLazyInitializer", "handler"}, allowSetters=true)
     private List<Factura> facturas;
+    */
 
     //------------------------------ CONSTRUCTORES ------------------------------
 
     public Cliente() {
+        /**
         facturas = new ArrayList<>();
+         */
     }
 
     //------------------------------ METODOS ------------------------------

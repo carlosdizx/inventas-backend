@@ -8,6 +8,4 @@ import java.util.List;
 
 public interface FacturaDao extends CrudRepository<Factura, Integer>
 {
-    @Query("SELECT f FROM Factura f WHERE f.cliente.documento=?1")
-    List<Factura> findAllByCliente(final Long pDopcumento);
 }

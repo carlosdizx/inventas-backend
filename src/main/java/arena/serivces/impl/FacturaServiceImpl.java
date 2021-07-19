@@ -22,11 +22,4 @@ public class FacturaServiceImpl extends GenericServiceImpl<Factura, Integer> imp
     {
         return dao;
     }
-
-    @Override
-    @Transactional(readOnly = true)
-    public List<Factura> findAllByCliente(Long pDopcumento)
-    {
-        return dao.findAllByCliente(pDopcumento);
-    }
 }

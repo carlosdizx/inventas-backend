@@ -98,7 +98,6 @@ public class FacturaController
                 RESPONSE.put("Mensaje", "No se encontró la factura, no se pudo actualizar");
                 return new ResponseEntity(RESPONSE, HttpStatus.NOT_FOUND);
             }
-            factura.setCliente(pFactura.getCliente());
             factura.setDescripcion(pFactura.getDescripcion());
             factura.setItems(pFactura.getItems());
             serivce.save(factura);
@@ -137,6 +136,7 @@ public class FacturaController
         }
     }
 
+    /**
     @GetMapping("get/cliente/{documento}")
     @Secured({"ROLE_ADMIN","ROLE_USER"})
     public ResponseEntity<HashMap<String, Object>>findAllByCliente(@PathVariable Long documento)
@@ -159,4 +159,5 @@ public class FacturaController
             return new ResponseEntity(RESPONSE, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    */
 }
