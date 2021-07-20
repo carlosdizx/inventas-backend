@@ -24,6 +24,10 @@ public class ItemFactura implements Serializable
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Producto producto;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "factura_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Factura factura;
     //------------------------------ CONSTRUCTORES ------------------------------
 
     public ItemFactura() {
@@ -55,17 +59,15 @@ public class ItemFactura implements Serializable
         this.producto = producto;
     }
 
-
     public Double subTotal() {
         return this.cantidad.doubleValue() * producto.getPrecioVenta();
     }
 
-    @Override
-    public String toString() {
-        return "ItemFactura{" +
-                "id=" + id +
-                ", cantidad=" + cantidad +
-                ", producto=" + producto +
-                '}';
+    public Factura getFactura() {
+        return factura;
+    }
+
+    public void setFactura(Factura factura) {
+        this.factura = factura;
     }
 }
