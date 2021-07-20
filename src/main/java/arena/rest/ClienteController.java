@@ -13,13 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//"GET,POST,PUT,DELETE,OPTIONS"
 @RestController
 @RequestMapping("api/clientes/")
-@CrossOrigin(methods = {RequestMethod.DELETE,RequestMethod.POST,RequestMethod.GET,RequestMethod.PUT},
-allowedHeaders = {"Access-Control-Allow-Headers"},
-origins = {"*"})
-
 public class ClienteController
 {
     private final static Map<String, Object> RESPONSE = new HashMap<>();
