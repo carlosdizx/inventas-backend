@@ -8,7 +8,6 @@ INSERT INTO roleados (usuario_id, rol_id) VALUES (1,1);
 INSERT INTO roleados (usuario_id, rol_id) VALUES (1,2);
 INSERT INTO roleados (usuario_id, rol_id) VALUES (2,2);
 
-INSERT INTO clientes (celular, documento, fecha, nombres) VALUES('3000xxxxx',2222222,'2000-01-1','Cliente 22');
 INSERT INTO clientes (celular, documento, fecha, nombres) VALUES('3163930876',1082749257,'1998-01-13','Carlos Díaz');
 INSERT INTO clientes (celular, documento, fecha, nombres) VALUES('3165772023',27156864,'1974-09-26','Jackeline Basante');
 

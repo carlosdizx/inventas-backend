@@ -14,8 +14,11 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-//@CrossOrigin(origins = {"http://localhost:8080","*"})
-@CrossOrigin(origins = "*")
+/**
+@CrossOrigin(methods = {RequestMethod.DELETE,RequestMethod.POST,RequestMethod.GET,RequestMethod.PUT},
+        allowedHeaders = {"Access-Control-Allow-Headers"},
+        origins = {"*"})
+ */
 @RequestMapping("api/facturas/")
 public class FacturaController
 {

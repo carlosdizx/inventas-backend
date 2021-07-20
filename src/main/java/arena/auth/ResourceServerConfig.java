@@ -21,26 +21,18 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter
     @Override
     public void configure(HttpSecurity http) throws Exception
     {
-        http.authorizeRequests()
-        /**
-        .antMatchers(HttpMethod.DELETE,"/api/productos/{id}").hasRole("ADMIN")
-        .antMatchers(HttpMethod.DELETE,"/api/clientes/{id}").hasRole("ADMIN")
-        .antMatchers(HttpMethod.DELETE,"/api/facturas/{id}").hasRole("ADMIN")
-        .antMatchers(HttpMethod.GET,"/api/facturas/all").hasRole("ADMIN")
-        .antMatchers(HttpMethod.GET,"/api/facturas/{id}").hasRole("ADMIN")
-        .antMatchers(HttpMethod.GET,"/api/facturas/get/cliente/{documento}").hasRole("ADMIN")
-         */
-        .anyRequest().authenticated()
-        .and().cors().configurationSource(corsConfigurationSource());
+        http.authorizeRequests().anyRequest().authenticated()
+                .and().cors().configurationSource(corsConfigurationSource());
     }
 
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         final CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(Arrays.asList("http://localhost:8080"));
-        configuration.setAllowedMethods(Arrays.asList("GET","POST","DELETE","PUT","OPTIONS"));
-        configuration.setAllowCredentials(true);
         configuration.setAllowedHeaders(Arrays.asList("Content_Type","Authorization"));
+        configuration.setAllowedMethods(Arrays.asList("GET","POST","DELETE","PUT","OPTIONS"));
+        configuration.setAllowedHeaders(Arrays.asList("Content-Type","Access-Control-Allow-Headers","Authorization","X-Requested-With"));
+        configuration.setAllowCredentials(true);
 
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);

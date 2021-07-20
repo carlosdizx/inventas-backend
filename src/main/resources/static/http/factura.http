@@ -21,12 +21,6 @@ POST http://localhost:8090/api/facturas/all
 Content-Type: application/json
 
 {
-  "cliente": {
-    "id": 1,
-    "nombres": "Carlos Ernesto",
-    "documento": 1082749257,
-    "celular": "3163930876"
-  },
   "items": [
     {
       "cantidad":5,
