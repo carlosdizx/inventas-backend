@@ -4,6 +4,8 @@ public class FacturaInfo
 {
     private Integer id;
 
+    private String descripcion;
+
     private String producto;
 
     private double precio;
@@ -12,8 +14,9 @@ public class FacturaInfo
 
     private double subTotal;
 
-    public FacturaInfo(Integer id, String producto, double precio, int cantidad, double subTotal) {
+    public FacturaInfo(Integer id, String descripcion, String producto, double precio, Integer cantidad, double subTotal) {
         this.id = id;
+        this.descripcion = descripcion;
         this.producto = producto;
         this.precio = precio;
         this.cantidad = cantidad;
@@ -26,6 +29,14 @@ public class FacturaInfo
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public String getProducto() {
@@ -44,11 +55,11 @@ public class FacturaInfo
         this.precio = precio;
     }
 
-    public int getCantidad() {
+    public Integer getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
     }
 
