@@ -22,4 +22,16 @@ public class FacturaServiceImpl extends GenericServiceImpl<Factura, Integer> imp
     {
         return dao;
     }
+
+    @Override
+    public List listadoGastosClietes()
+    {
+        return dao.listadoGastosClietes();
+    }
+
+    @Override
+    public List<Object> findAllFacturas()
+    {
+        return dao.findAllFacturas();
+    }
 }

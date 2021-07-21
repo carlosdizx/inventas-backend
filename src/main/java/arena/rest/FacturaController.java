@@ -102,7 +102,6 @@ public class FacturaController
                 return new ResponseEntity(RESPONSE, HttpStatus.NOT_FOUND);
             }
             factura.setDescripcion(pFactura.getDescripcion());
-            factura.setItems(pFactura.getItems());
             serivce.save(factura);
             RESPONSE.put("Mensaje", factura );
             return new ResponseEntity(RESPONSE, HttpStatus.OK);
@@ -129,6 +128,54 @@ public class FacturaController
             }
             serivce.delete(id);
             RESPONSE.put("Mensaje", "Factura eliminada!" );
+            return new ResponseEntity(RESPONSE, HttpStatus.OK);
+        }
+        catch (DataAccessException e)
+        {
+            RESPONSE.put("Mensaje", "No se ha logrado realizar la consulta en la base de datos");
+            RESPONSE.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity(RESPONSE, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping("all/gastos")
+    public ResponseEntity<HashMap<String, Object>>  listadoGastosClietes()
+    {
+        RESPONSE.clear();
+        try
+        {
+            final List listado = serivce.listadoGastosClietes();
+            if (listado.isEmpty())
+            {
+                RESPONSE.put("Mensaje", "No hay ventas registradas");
+                return new ResponseEntity(RESPONSE, HttpStatus.NOT_FOUND);
+            }
+            RESPONSE.put("Mensaje", listado );
+            return new ResponseEntity(RESPONSE, HttpStatus.OK);
+        }
+        catch (DataAccessException e)
+        {
+            RESPONSE.put("Mensaje", "No se ha logrado realizar la consulta en la base de datos");
+            RESPONSE.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity(RESPONSE, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping("all/info")
+    public ResponseEntity<HashMap<String, Object>>  findAllFacturas()
+    {
+        RESPONSE.clear();
+        try
+        {
+            final List<Object> listado = serivce.findAllFacturas();
+            if (listado.isEmpty())
+            {
+                RESPONSE.put("Mensaje", "No hay ventas registradas");
+                return new ResponseEntity(RESPONSE, HttpStatus.NOT_FOUND);
+            }
+            RESPONSE.put("Mensaje", listado );
             return new ResponseEntity(RESPONSE, HttpStatus.OK);
         }
         catch (DataAccessException e)
