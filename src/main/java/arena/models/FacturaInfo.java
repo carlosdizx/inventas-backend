@@ -1,10 +1,14 @@
 package arena.models;
 
+import java.util.Date;
+
 public class FacturaInfo
 {
     private Integer id;
 
     private String descripcion;
+
+    private Date fecha;
 
     private String producto;
 
@@ -14,9 +18,10 @@ public class FacturaInfo
 
     private double subTotal;
 
-    public FacturaInfo(Integer id, String descripcion, String producto, double precio, Integer cantidad, double subTotal) {
+    public FacturaInfo(Integer id, String descripcion, Date fecha, String producto, double precio, Integer cantidad, double subTotal) {
         this.id = id;
         this.descripcion = descripcion;
+        this.fecha = fecha;
         this.producto = producto;
         this.precio = precio;
         this.cantidad = cantidad;
@@ -37,6 +42,14 @@ public class FacturaInfo
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
     }
 
     public String getProducto() {
