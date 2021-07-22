@@ -77,4 +77,8 @@ public class Factura implements Serializable
     public void setItems(List<ItemFactura> items) {
         this.items = items;
     }
+
+    public List<ItemFactura> getItems() {
+        return items;
+    }
 }

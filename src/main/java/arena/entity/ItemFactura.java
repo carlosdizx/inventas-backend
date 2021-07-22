@@ -62,12 +62,4 @@ public class ItemFactura implements Serializable
     public Double subTotal() {
         return this.cantidad.doubleValue() * producto.getPrecioVenta();
     }
-
-    public Factura getFactura() {
-        return factura;
-    }
-
-    public void setFactura(Factura factura) {
-        this.factura = factura;
-    }
 }
