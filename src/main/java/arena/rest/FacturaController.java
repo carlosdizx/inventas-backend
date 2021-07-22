@@ -1,6 +1,7 @@
 package arena.rest;
 
 import arena.entity.Factura;
+import arena.models.FacturaInfo;
 import arena.serivces.api.FacturaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -169,7 +170,7 @@ public class FacturaController
         RESPONSE.clear();
         try
         {
-            final List<Object> listado = serivce.findAllFacturas();
+            final List<FacturaInfo> listado = serivce.findAllFacturas();
             if (listado.isEmpty())
             {
                 RESPONSE.put("Mensaje", "No hay ventas registradas");
