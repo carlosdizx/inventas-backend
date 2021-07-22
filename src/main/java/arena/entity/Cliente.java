@@ -30,9 +30,11 @@ public class Cliente implements Serializable
     @NotEmpty
     private String nombres;
 
-    @Column(unique = true,nullable = false)
+    @Column(unique = true,nullable = false,length = 15)
+    @NotEmpty
     private String documento;
 
+    @NotEmpty
     private String celular;
 
     @Temporal(TemporalType.DATE)
