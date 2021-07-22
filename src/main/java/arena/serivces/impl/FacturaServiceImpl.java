@@ -29,10 +29,4 @@ public class FacturaServiceImpl extends GenericServiceImpl<Factura, Integer> imp
     {
         return dao.listadoGastosClietes();
     }
-
-    @Override
-    public List<FacturaInfo> findAllFacturas()
-    {
-        return dao.findAllFacturas();
-    }
 }

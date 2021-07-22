@@ -163,30 +163,6 @@ public class FacturaController
         }
     }
 
-    @Secured("ROLE_ADMIN")
-    @GetMapping("all/info")
-    public ResponseEntity<HashMap<String, Object>>  findAllFacturas()
-    {
-        RESPONSE.clear();
-        try
-        {
-            final List<FacturaInfo> listado = serivce.findAllFacturas();
-            if (listado.isEmpty())
-            {
-                RESPONSE.put("Mensaje", "No hay ventas registradas");
-                return new ResponseEntity(RESPONSE, HttpStatus.NOT_FOUND);
-            }
-            RESPONSE.put("Mensaje", listado );
-            return new ResponseEntity(RESPONSE, HttpStatus.OK);
-        }
-        catch (DataAccessException e)
-        {
-            RESPONSE.put("Mensaje", "No se ha logrado realizar la consulta en la base de datos");
-            RESPONSE.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-            return new ResponseEntity(RESPONSE, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
     /**
     @GetMapping("get/cliente/{documento}")
     @Secured({"ROLE_ADMIN","ROLE_USER"})
