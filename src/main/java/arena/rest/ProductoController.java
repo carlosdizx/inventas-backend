@@ -96,7 +96,7 @@ public class ProductoController
                 return new ResponseEntity(RESPONSE, HttpStatus.NOT_FOUND);
             }
             producto.setNombre( pProducto.getNombre() );
-            producto.setPrecioCompra( pProducto.getPrecioCompra() );
+            producto.setPrecioCompra( pProducto.darPrecioCompra() );
             producto.setPrecioVenta( pProducto.getPrecioVenta() );
             serivce.save(producto);
             RESPONSE.put("Mensaje", producto );

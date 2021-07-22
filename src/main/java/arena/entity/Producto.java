@@ -53,10 +53,6 @@ public class Producto implements Serializable
         this.nombre = nombre;
     }
 
-    public double getPrecioCompra() {
-        return precioCompra;
-    }
-
     public void setPrecioCompra(double precioCompra) {
         this.precioCompra = precioCompra;
     }
@@ -75,5 +71,9 @@ public class Producto implements Serializable
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public double darPrecioCompra() {
+        return precioCompra;
     }
 }
