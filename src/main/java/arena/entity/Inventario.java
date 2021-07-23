@@ -11,19 +11,16 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "facturas")
-public class Factura implements Serializable
+@Table(name = "inventarios")
+public class Inventario implements Serializable
 {
-
     //------------------------------ ATRIBUTOS ------------------------------
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;
-
-    private String descripcion;
+    private Long id;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -31,32 +28,25 @@ public class Factura implements Serializable
     private Date fecha;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "factura_id")
+    @JoinColumn(name = "inventario_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    private List<ItemFactura> items;
+    private List<Activo> activos;
 
     //------------------------------ CONSTRUCTORES ------------------------------
 
-    public Factura() {
-        items = new ArrayList<>();
+    public Inventario() {
+        activos = new ArrayList<>();
     }
 
     //------------------------------ METODOS ------------------------------
 
-    public Integer getId() {
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
     }
 
     public Date getFecha() {
@@ -67,11 +57,11 @@ public class Factura implements Serializable
         this.fecha = fecha;
     }
 
-    public void setItems(List<ItemFactura> items) {
-        this.items = items;
+    public List<Activo> getActivos() {
+        return activos;
     }
 
-    public List<ItemFactura> getItems() {
-        return items;
+    public void setActivos(List<Activo> activos) {
+        this.activos = activos;
     }
 }

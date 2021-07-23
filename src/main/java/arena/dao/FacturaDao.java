@@ -1,7 +1,6 @@
 package arena.dao;
 
 import arena.entity.Factura;
-import arena.models.FacturaInfo;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
