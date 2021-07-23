@@ -68,74 +68,18 @@ public class InventarioController
     public ResponseEntity<HashMap<String, Object>> findByID(@PathVariable Long id)
     {
         RESPONSE.clear();
-        try
-        {
+        try {
             final Inventario inventario = serivce.get(id);
             if (inventario == null) {
                 RESPONSE.put("Mensaje", "No se encontró el inventario");
                 return new ResponseEntity(RESPONSE, HttpStatus.NOT_FOUND);
             }
-            RESPONSE.put("Mensaje", inventario );
+            RESPONSE.put("Mensaje", inventario);
             return new ResponseEntity(RESPONSE, HttpStatus.OK);
-        }
-        catch (DataAccessException e)
-        {
+        } catch (DataAccessException e) {
             RESPONSE.put("Mensaje", "No se ha logrado realizar la consulta en la base de datos");
             RESPONSE.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity(RESPONSE, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    /**
-    @Secured({"ROLE_ADMIN","ROLE_USER"})
-    @PutMapping("get/{id}")
-    public ResponseEntity<HashMap<String, Object>> update(@PathVariable Integer id,@RequestBody Producto pProducto)
-    {
-        RESPONSE.clear();
-        try
-        {
-            Producto producto = serivce.get(id);
-            if (producto == null) {
-                RESPONSE.put("Mensaje", "No se encontró el producto, no se pudo actualizar");
-                return new ResponseEntity(RESPONSE, HttpStatus.NOT_FOUND);
-            }
-            producto.setNombre( pProducto.getNombre() );
-            producto.setPrecioCompra( pProducto.darPrecioCompra() );
-            producto.setPrecioVenta( pProducto.getPrecioVenta() );
-            serivce.save(producto);
-            RESPONSE.put("Mensaje", producto );
-            return new ResponseEntity(RESPONSE, HttpStatus.OK);
-        }
-        catch (DataAccessException e)
-        {
-            RESPONSE.put("Mensaje", "No se ha logrado realizar la consulta en la base de datos");
-            RESPONSE.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-            return new ResponseEntity(RESPONSE, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @Secured({"ROLE_ADMIN"})
-    @DeleteMapping("get/{id}")
-    public ResponseEntity<HashMap<String, Object>> delete(@PathVariable Integer id)
-    {
-        RESPONSE.clear();
-        try
-        {
-            Producto producto = serivce.get(id);
-            if (producto == null) {
-                RESPONSE.put("Mensaje", "No se encontró el producto, no se pudo eliminar");
-                return new ResponseEntity(RESPONSE, HttpStatus.NOT_FOUND);
-            }
-            serivce.delete(id);
-            RESPONSE.put("Mensaje", "Producto eliminado!" );
-            return new ResponseEntity(RESPONSE, HttpStatus.OK);
-        }
-        catch (DataAccessException e)
-        {
-            RESPONSE.put("Mensaje", "No se ha logrado realizar la consulta en la base de datos");
-            RESPONSE.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
-            return new ResponseEntity(RESPONSE, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-    */
 }
