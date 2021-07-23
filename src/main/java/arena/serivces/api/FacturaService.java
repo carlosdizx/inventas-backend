@@ -2,7 +2,6 @@ package arena.serivces.api;
 
 import arena.commons.GenericServiceAPI;
 import arena.entity.Factura;
-import arena.models.FacturaInfo;
 
 import java.util.List;
 
