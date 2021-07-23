@@ -3,15 +3,16 @@ package arena.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "activos")
-public class Activo
+public class Activo implements Serializable
 {
     private static final long serialVersionUID = 1L;
 
     @Id
-    private Integer id;
+    private Long id;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "producto_id")
@@ -20,20 +21,25 @@ public class Activo
 
     private Long codigo;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "inventario_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private Inventario factura;
+
     public Activo() {
     }
 
-    public Activo(Integer id, Producto producto, Long codigo) {
+    public Activo(Long id, Producto producto, Long codigo) {
         this.id = id;
         this.producto = producto;
         this.codigo = codigo;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
