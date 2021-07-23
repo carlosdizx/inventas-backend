@@ -63,21 +63,19 @@ public class InventarioController
         }
     }
 
-    /**
-
     @Secured({"ROLE_ADMIN","ROLE_USER"})
     @GetMapping("get/{id}")
-    public ResponseEntity<HashMap<String, Object>> findByID(@PathVariable Integer id)
+    public ResponseEntity<HashMap<String, Object>> findByID(@PathVariable Long id)
     {
         RESPONSE.clear();
         try
         {
-            final Producto producto = serivce.get(id);
-            if (producto == null) {
-                RESPONSE.put("Mensaje", "No se encontró el producto");
+            final Inventario inventario = serivce.get(id);
+            if (inventario == null) {
+                RESPONSE.put("Mensaje", "No se encontró el inventario");
                 return new ResponseEntity(RESPONSE, HttpStatus.NOT_FOUND);
             }
-            RESPONSE.put("Mensaje", producto );
+            RESPONSE.put("Mensaje", inventario );
             return new ResponseEntity(RESPONSE, HttpStatus.OK);
         }
         catch (DataAccessException e)
@@ -88,6 +86,7 @@ public class InventarioController
         }
     }
 
+    /**
     @Secured({"ROLE_ADMIN","ROLE_USER"})
     @PutMapping("get/{id}")
     public ResponseEntity<HashMap<String, Object>> update(@PathVariable Integer id,@RequestBody Producto pProducto)
