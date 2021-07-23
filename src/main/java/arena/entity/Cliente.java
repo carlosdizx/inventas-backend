@@ -30,9 +30,11 @@ public class Cliente implements Serializable
     @NotEmpty
     private String nombres;
 
-    @Column(unique = true,nullable = false)
-    private Long documento;
+    @Column(unique = true,nullable = false,length = 15)
+    @NotEmpty
+    private String documento;
 
+    @NotEmpty
     private String celular;
 
     @Temporal(TemporalType.DATE)
@@ -76,11 +78,11 @@ public class Cliente implements Serializable
         this.nombres = nombres;
     }
 
-    public Long getDocumento() {
+    public String getDocumento() {
         return documento;
     }
 
-    public void setDocumento(Long documento) {
+    public void setDocumento(String documento) {
         this.documento = documento;
     }
 

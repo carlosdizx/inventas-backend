@@ -5,5 +5,5 @@ import arena.entity.Cliente;
 
 public interface ClienteService extends GenericServiceAPI<Cliente, Integer>
 {
-    Cliente findByDocumento(Long documento);
+    Cliente findByDocumento(String documento);
 }

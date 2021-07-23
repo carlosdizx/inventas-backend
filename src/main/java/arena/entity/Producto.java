@@ -14,10 +14,12 @@ public class Producto implements Serializable
     //------------------------------ ATRIBUTOS ------------------------------
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(unique = true)
     private String nombre;
 
     private double precioCompra;
@@ -53,10 +55,6 @@ public class Producto implements Serializable
         this.nombre = nombre;
     }
 
-    public double getPrecioCompra() {
-        return precioCompra;
-    }
-
     public void setPrecioCompra(double precioCompra) {
         this.precioCompra = precioCompra;
     }
@@ -75,5 +73,9 @@ public class Producto implements Serializable
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public double darPrecioCompra() {
+        return precioCompra;
     }
 }

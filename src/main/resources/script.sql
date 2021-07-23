@@ -17,3 +17,20 @@ INSERT INTO productos (fecha, nombre, precio_compra, precio_venta) VALUES (now()
 INSERT INTO productos (fecha, nombre, precio_compra, precio_venta) VALUES (now(),'Gasesosa cigarra 500ml',1200,1800);
 INSERT INTO productos (fecha, nombre, precio_compra, precio_venta) VALUES (now(),'Jugo Hit 450ml',1500,2200);
 
+
+/*
+ Lista a los clientes REGISTRADOS, cuanto dinero han gastado y el promedio de sus compras
+ */
+SELECT f.descripcion,sum(p.precio_venta*fi.cantidad),avg(p.precio_venta*fi.cantidad) FROM facturas f
+    INNER JOIN facturas_items fi on f.id = fi.factura_id
+    INNER JOIN productos p on p.id = fi.producto_id
+    INNER JOIN clientes c on c.documento=f.descripcion
+GROUP BY f.descripcion,c.documento;
+
+/*
+ Lista a los clientes, cuanto dinero han gastado y el promedio de sus compras
+ */
+SELECT f.descripcion,sum(p.precio_venta*fi.cantidad),avg(p.precio_venta*fi.cantidad) FROM facturas f
+    INNER JOIN facturas_items fi on f.id = fi.factura_id
+    INNER JOIN productos p on p.id = fi.producto_id
+GROUP BY f.descripcion;

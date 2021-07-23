@@ -85,7 +85,7 @@ public class ClienteController
 
     @GetMapping("get/cliente/{documento}")
     @Secured({"ROLE_ADMIN","ROLE_USER"})
-    public ResponseEntity<HashMap<String, Object>> findByDocumento(@PathVariable Long documento)
+    public ResponseEntity<HashMap<String, Object>> findByDocumento(@PathVariable String documento)
     {
         RESPONSE.clear();
         try

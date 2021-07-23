@@ -23,7 +23,7 @@ public class ClienteServiceImpl extends GenericServiceImpl<Cliente, Integer> imp
 
     @Override
     @Transactional(readOnly = true)
-    public Cliente findByDocumento(Long documento)
+    public Cliente findByDocumento(String documento)
     {
         return dao.findByDocumento(documento);
     }
