@@ -30,13 +30,6 @@ public class Factura implements Serializable
     @CreationTimestamp
     private Date fecha;
 
-    /**
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cliente_id")
-    @JsonIgnoreProperties(value={"facturas", "hibernateLazyInitializer", "handler"}, allowSetters=true)
-    private Cliente cliente;
-     */
-
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "factura_id")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

@@ -39,20 +39,20 @@ public class InventarioController
         return new ResponseEntity(RESPONSE, HttpStatus.OK);
     }
 
-    /**
     @Secured({"ROLE_ADMIN","ROLE_USER"})
     @PostMapping("all")
-    public ResponseEntity<HashMap<String, Object>> create(@RequestBody Producto pProducto)
+    public ResponseEntity<HashMap<String, Object>> create(@RequestBody Inventario pInventario)
     {
         RESPONSE.clear();
         try
         {
-            final Producto producto = serivce.save(pProducto);
-            if (producto == null) {
-                RESPONSE.put("Mensaje", "No se pudo agregar el producto");
+            System.out.println(pInventario);
+            final Inventario inventario = serivce.save(pInventario);
+            if (inventario == null) {
+                RESPONSE.put("Mensaje", "No se pudo registrar el inventario");
                 return new ResponseEntity(RESPONSE, HttpStatus.NOT_FOUND);
             }
-            RESPONSE.put("Mensaje", producto );
+            RESPONSE.put("Mensaje", inventario );
             return new ResponseEntity(RESPONSE, HttpStatus.OK);
         }
         catch (DataAccessException e)
@@ -62,6 +62,8 @@ public class InventarioController
             return new ResponseEntity(RESPONSE, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    /**
 
     @Secured({"ROLE_ADMIN","ROLE_USER"})
     @GetMapping("get/{id}")
