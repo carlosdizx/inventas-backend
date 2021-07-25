@@ -46,7 +46,6 @@ public class InventarioController
         RESPONSE.clear();
         try
         {
-            System.out.println(pInventario);
             final Inventario inventario = serivce.save(pInventario);
             if (inventario == null) {
                 RESPONSE.put("Mensaje", "No se pudo registrar el inventario");
