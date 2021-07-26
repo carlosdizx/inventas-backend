@@ -17,6 +17,7 @@ public class Activo implements Serializable
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
     private Long codigo;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -24,6 +25,7 @@ public class Activo implements Serializable
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Producto producto;
 
+    private boolean estado = true;
 
     @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     @JoinColumn(name = "inventario_id")
@@ -59,6 +61,14 @@ public class Activo implements Serializable
 
     public void setProducto(Producto producto) {
         this.producto = producto;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
 
     public void setInventario(Inventario inventario) {
