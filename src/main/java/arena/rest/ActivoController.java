@@ -1,6 +1,7 @@
 package arena.rest;
 
 import arena.entity.Activo;
+import arena.entity.Factura;
 import arena.entity.Inventario;
 import arena.serivces.api.ActivoService;
 import arena.serivces.api.InventarioService;
@@ -37,5 +38,32 @@ public class ActivoController
         }
         RESPONSE.put("Mensaje","No hay activos");
         return new ResponseEntity(RESPONSE, HttpStatus.OK);
+    }
+
+    @Secured({"ROLE_ADMIN","ROLE_USER"})
+    @PutMapping("update")
+    public ResponseEntity<HashMap<String, Object>> updateData(@RequestBody List<Activo> activos)
+    {
+        RESPONSE.clear();
+        try
+        {
+            final List<Activo> listado = serivce.getAllByEstado();
+            listado.forEach(item -> {
+                activos.forEach(activo -> {
+                    if (activo.getId() ==item.getId()){
+                        item.setEstado(false);
+                        serivce.save(item);
+                    }
+                });
+            });
+            RESPONSE.put("Mensaje","Se actualizaron los datos de los activos");
+            return new ResponseEntity(RESPONSE, HttpStatus.OK);
+        }
+        catch (DataAccessException e)
+        {
+            RESPONSE.put("Mensaje", "No se ha logrado realizar la consulta en la base de datos");
+            RESPONSE.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+            return new ResponseEntity(RESPONSE, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }

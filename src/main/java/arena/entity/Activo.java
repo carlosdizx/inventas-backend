@@ -74,4 +74,8 @@ public class Activo implements Serializable
     public void setInventario(Inventario inventario) {
         this.inventario = inventario;
     }
+
+    public Inventario darInventario() {
+        return inventario;
+    }
 }
