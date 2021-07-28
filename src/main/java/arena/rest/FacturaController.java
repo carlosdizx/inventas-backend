@@ -44,7 +44,6 @@ public class FacturaController
         RESPONSE.clear();
         try
         {
-            System.out.println(pFactura);
             final Factura factura = serivce.save(pFactura);
             if (factura == null) {
                 RESPONSE.put("Mensaje", "No se pudo agregar la factura");
